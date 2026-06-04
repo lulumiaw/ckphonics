@@ -54,7 +54,7 @@ xue-phonics/
 
 ## 🚀 上傳到 GitHub Pages
 
-1. 在 GitHub 建立新 repository（例如 `xue-phonics`）
+1. 在 GitHub 建立新 repository（例如 `phonics`）
 2. 把所有 7 個檔案上傳到根目錄
 3. Settings → Pages → Branch: main → Save
 4. 約 1–2 分鐘後網站上線！
