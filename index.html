@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 薛珍華自然發音樂園</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero {
+    text-align: center;
+    padding: 28px 20px 10px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero p { font-size: 0.95rem; color: #888; margin-top: 6px; line-height: 1.7; }
+  .total-stars {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; border: 3px solid var(--yellow);
+    border-radius: 50px; padding: 8px 20px;
+    font-family: 'Fredoka One', cursive; font-size: 1.1rem;
+    color: var(--orange); margin-top: 12px; box-shadow: var(--shadow);
+  }
+  .section-title {
+    font-family: 'Fredoka One', cursive; font-size: 1.3rem;
+    color: var(--purple); text-align: center;
+    padding: 0 20px; max-width: 900px; margin: 16px auto 0;
+  }
+  .source-note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: #bbb;
+    padding: 8px 20px 0;
+  }
+  footer {
+    text-align: center; padding: 28px 20px;
+    color: #ccc; font-size: 0.8rem; line-height: 1.9;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌟 薛珍華自然發音樂園</h1>
+  <p>自然發音法 · 共 20 章 · 466 個練習單字</p>
+</header>
+
+<div id="progress-bar">
+  <span class="star-count">⭐ 總星星：<span id="star-num">0</span></span>
+  <div class="progress-stars" id="progress-stars"></div>
+</div>
+
+<div class="hero">
+  <p>歡迎來到薛珍華老師的自然發音樂園！🌈<br>
+  選擇一個單元開始學習，每個主題都有單字練習、小測驗和繪本故事！</p>
+  <div class="total-stars">🏆 已完成：<span id="done-count">0</span> / 20 章</div>
+</div>
+
+<div class="source-note">
+  📚 課程內容依據：薛珍華老師自然發音法 · 21天學會自然拼讀 · 自然發音法規則全集
+</div>
+
+<div class="section-title">📚 選擇單元 Choose a Unit</div>
+
+<div class="unit-grid">
+
+  <a class="unit-card" href="ch1-10.html" data-color="0">
+    <span class="unit-emoji">🔤</span>
+    <div class="unit-title">Unit 1 · 母音篇</div>
+    <div style="font-size:0.85rem;color:#666;margin-bottom:6px">Chapter 1–10</div>
+    <div class="unit-lessons">
+      子音母音認識 · 短母音 · Magic e<br>
+      ai/ay · ea/ee/y · i/ie/igh · all/ell/ill<br>
+      oo/oa/ow · ou/ow/oi/oy · ue/ui
+    </div>
+    <div class="unit-progress"><div class="unit-progress-bar" id="prog-1" style="width:0%"></div></div>
+  </a>
+
+  <a class="unit-card" href="ch11-20.html" data-color="2">
+    <span class="unit-emoji">🔗</span>
+    <div class="unit-title">Unit 2 · 子音與進階篇</div>
+    <div style="font-size:0.85rem;color:#666;margin-bottom:6px">Chapter 11–20</div>
+    <div class="unit-lessons">
+      ar/or/ir/er/ur · bl/cl/fl/sl · br/cr/dr/tr<br>
+      sh/ch/th/ph · sion/sure/ture · tion/ssion/cian<br>
+      kn/st/wr · c/g例外 · 無聲字 · 變音
+    </div>
+    <div class="unit-progress"><div class="unit-progress-bar" id="prog-2" style="width:0%"></div></div>
+  </a>
+
+</div>
+
+<footer>
+  🌟 薛珍華自然發音樂園<br>
+  課程內容依據薛珍華老師自然發音法、21天學會自然拼讀、自然發音法規則全集母音篇<br>
+  共 20 章 · 466 個練習單字 · 20 個繪本故事<br>
+  進度自動儲存在這個裝置上
+</footer>
+
+<script>
+  const stars = parseInt(localStorage.getItem('xue_phonics_stars') || '0');
+  document.getElementById('star-num').textContent = stars;
+  const starsEl = document.getElementById('progress-stars');
+  for (let i = 0; i < Math.min(stars, 20); i++) {
+    const s = document.createElement('span');
+    s.className = 'star earned';
+    s.textContent = '⭐';
+    starsEl.appendChild(s);
+  }
+  const done = JSON.parse(localStorage.getItem('xue_phonics_done') || '[]');
+  document.getElementById('done-count').textContent = done.length;
+
+  const ranges = [[1,10],[11,20]];
+  ranges.forEach(([from,to], idx) => {
+    const total = to - from + 1;
+    const count = done.filter(id => id >= from && id <= to).length;
+    const bar = document.getElementById('prog-' + (idx+1));
+    if (bar) bar.style.width = Math.round((count/total)*100) + '%';
+  });
+</script>
+
+</body>
+</html>
