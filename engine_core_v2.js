@@ -9,7 +9,10 @@
 // ═══════════════════════════════════════════
 
 // ─── Storage Key（各網站可覆寫）───
-if (typeof STORAGE_KEY === 'undefined') var STORAGE_KEY = 'phonics';
+// 注意：若外部 <script> 已用 const/let 宣告 STORAGE_KEY，
+// 這裡絕對不能再用 var/let/const 宣告同名識別字，否則會直接
+// 拋出 SyntaxError，導致整個 engine 檔案完全無法執行。
+window.STORAGE_KEY = (typeof STORAGE_KEY !== 'undefined') ? STORAGE_KEY : 'phonics';
 
 // ─── STATE ───
 let stars = parseInt(localStorage.getItem(STORAGE_KEY+'_stars') || '0');
